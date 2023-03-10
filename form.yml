@@ -18,18 +18,25 @@ attributes:
   # @note It is called within the batch job as `module load <modules>` if
   #   defined
   # @example Do not load any modules
-  #     modules: ""
+  # modules: ""
   # @example Using default python module
   #     modules: "python"
   # @example Using specific python module
   #     modules: "python/3.5"
   # @example Using combination of modules
   #     modules: "python/3.5 cuda/8.0.44"
-  modules: "python-3.9.13-gcc-11.3.0-bnztxs3 python-3.9.13-gcc-11.3.0-6nnavza py-jupyterlab-3.4.2-gcc-11.3.0-czwt5hp py-jupyterlab-3.4.2-gcc-11.3.0-om64ehp"
 
   # Any extra command line arguments to feed to the `jupyter notebook ...`
   # command that launches the Jupyter notebook within the batch job
-  extra_jupyter_args: ""
+  # extra_jupyter_args: ""
+  selected_partition:
+    label: "Partition"
+    widget: "select"
+    options:
+      # - ["Compute", "compute"]
+      # - ["GPU", "gpu"]
+      - ["Compute (Max number of nodes 8, maximum time allowed 12 hours, Intel CPUs, Nvidia T4 GPUs)", "compute"]
+      - ["GPU (Max number of nodes 2, maximum time allowed 72 hours, AMD CPUs, Nvidia A100 GPUs)", "gpu"]
 
 # All of the attributes that make up the Dashboard form (in respective order),
 # and made available to the submit configuration file and the template ERB
@@ -41,10 +48,11 @@ attributes:
 #   option, then it will not appear in the form page that the user sees in the
 #   Dashboard
 form:
-  - modules
-  - extra_jupyter_args
-    #  - bc_account
-  - bc_queue
+# - modules
+# - extra_jupyter_args
+# - bc_account
+# - bc_queue
+  - selected_partition
   - bc_num_hours
   - bc_num_slots
   - bc_email_on_started

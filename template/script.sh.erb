@@ -1,5 +1,17 @@
 #!/usr/bin/env bash
 
+__conda_setup="$('/data/software/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/data/software/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/data/software/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/data/software/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+
 # Benchmark info
 echo "TIMING - Starting main script at: $(date)"
 
@@ -10,25 +22,9 @@ cd "${HOME}"
 # Start Jupyter Notebook Server
 #
 
-<%- unless context.modules.blank? -%>
-# Purge the module environment to avoid conflicts
-module purge
-
-# Load the require modules
-arch=$(spack arch)
-case $arch in
-  linux-centos8-cascadelake) module load python-3.9.13-gcc-11.3.0-bnztxs3 py-jupyterlab-3.4.2-gcc-11.3.0-czwt5hp;;
-  linux-centos8-zen2) module load python-3.9.13-gcc-11.3.0-6nnavza py-jupyterlab-3.4.2-gcc-11.3.0-om64ehp;;
-esac
-# module load <%= context.modules %>
-
-# List loaded modules
-module list
-<%- end -%>
-
 # Benchmark info
 echo "TIMING - Starting jupyter at: $(date)"
 
 # Launch the Jupyter Notebook Server
 set -x
-jupyter-lab --config="${CONFIG_FILE}" <%= context.extra_jupyter_args %>
+jupyter-lab --config="${CONFIG_FILE}" 
