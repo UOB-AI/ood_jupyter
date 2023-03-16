@@ -35,8 +35,9 @@ attributes:
     options:
       # - ["Compute", "compute"]
       # - ["GPU", "gpu"]
-      - ["Compute (Max number of nodes 8, maximum time allowed 12 hours, Intel CPUs, Nvidia T4 GPUs)", "compute"]
+      - ["Compute (Max number of nodes 8, maximum time allowed 24 hours, Intel CPUs, Nvidia T4 GPUs)", "compute"]
       - ["GPU (Max number of nodes 2, maximum time allowed 72 hours, AMD CPUs, Nvidia A100 GPUs)", "gpu"]
+      - ["Standard (Max number of nodes 4, maximum time allowed 12 hours, Intel CPUs, Nvidia T4 GPUs)", "standard"]
 
 # All of the attributes that make up the Dashboard form (in respective order),
 # and made available to the submit configuration file and the template ERB
