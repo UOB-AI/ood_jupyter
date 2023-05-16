@@ -56,4 +56,4 @@ form:
   - selected_partition
   - bc_num_hours
   - bc_num_slots
-  - bc_email_on_started
+# - bc_email_on_started
