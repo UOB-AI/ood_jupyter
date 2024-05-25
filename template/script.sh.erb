@@ -14,11 +14,10 @@ fi
 unset __conda_setup
 
 # Load Spack
-. /data/software/spack/share/spack/setup-env.sh
-# Load git using spack
-spack load git arch=`spack arch`
-spack load git-lfs arch=`spack arch`
-# spack load graphviz arch=`spack arch`
+source /data/software/spack/env.sh
+
+# Load Spack modules
+spack load git git-lfs <%= context.modules %>
 
 cd "${HOME}"
 
